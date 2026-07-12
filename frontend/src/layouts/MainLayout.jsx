@@ -8,10 +8,10 @@ export default function MainLayout() {
 
   return (
     <div className="min-h-screen bg-[#f8f8f8]">
-      {/* SIDEBAR - fixed on desktop, hidden on mobile */}
-      <div className="hidden md:fixed md:left-0 md:top-0 md:h-screen md:w-64 md:z-50">
+      {/* SIDEBAR - fixed on desktop, hidden on mobile but visible as drawer */}
+      <aside className="fixed left-0 top-0 h-screen w-64 z-50 hidden md:block border-r border-gray-300 bg-white overflow-y-auto shrink-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <Sidebar />
-      </div>
+      </aside>
 
       {/* MOBILE OVERLAY when sidebar is open */}
       {sidebarOpen && (
@@ -23,14 +23,15 @@ export default function MainLayout() {
 
       {/* MOBILE SIDEBAR DRAWER */}
       <div
-        className={`fixed left-0 top-0 h-screen w-64 transform transition-transform duration-300 md:hidden z-50 ${
+        className={`fixed left-0 top-0 h-screen w-64 transform transition-transform duration-300 md:hidden z-50 bg-white border-r border-gray-300 overflow-y-auto ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <Sidebar />
       </div>
 
-      {/* TOPBAR - fixed top padding for desktop */}
+      {/* TOPBAR - responsive margin */}
       <Topbar sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       {/* CONTENUTO - margin only on desktop */}
