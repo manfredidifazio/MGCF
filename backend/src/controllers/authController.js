@@ -9,6 +9,7 @@ import {
   updateProfile,
   verifyUserEmail,
 } from "../services/userService.js";
+import { sendVerificationEmail } from "../services/emailService.js";
 
 function clean(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -20,17 +21,23 @@ function validEmail(email) {
 
 export async function register(req, res) {
   try {
-    const username = clean(req.body.username);
     const email = clean(req.body.email).toLowerCase();
     const password = clean(req.body.password);
     const confirmPassword = clean(req.body.confirmPassword);
 
-    if (!username || !validEmail(email) || password.length < 8 || password !== confirmPassword) {
-      return res.status(400).json({ success: false, message: "Controlla nome, email e password." });
+    if (!validEmail(email) || password.length < 8 || password !== confirmPassword) {
+      return res.status(400).json({ success: false, message: "Email non valida o password troppo corta (min 8 caratteri)." });
     }
 
+    // Generate username from email (before @)
+    const username = email.split("@")[0];
+
     const user = await createUser({ username, email, password });
-    return res.status(201).json({ success: true, user, message: "Registrazione inviata. Attendi la conferma dell'amministratore." });
+    
+    // Send verification email
+    await sendVerificationEmail(user);
+
+    return res.status(201).json({ success: true, message: "Registrazione completata! Controlla la tua email per verificare l'account." });
   } catch (error) {
     if (error.code === "23505") return res.status(409).json({ success: false, message: "Email già registrata." });
     console.error(error);

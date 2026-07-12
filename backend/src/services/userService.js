@@ -72,13 +72,14 @@ export async function initialAdminId() {
 
 export async function createUser({ username, email, password }) {
   const passwordHash = await bcrypt.hash(password, 10);
+  const verificationToken = token();
   const result = await pool.query(
     `
-      INSERT INTO users (username, email, password_hash, is_verified, is_active)
-      VALUES ($1, LOWER($2), $3, FALSE, TRUE)
-      RETURNING ${userFields}
+      INSERT INTO users (username, email, password_hash, is_verified, is_active, verification_token)
+      VALUES ($1, LOWER($2), $3, FALSE, TRUE, $4)
+      RETURNING ${userFields}, verification_token AS "verificationToken"
     `,
-    [username, email, passwordHash]
+    [username, email, passwordHash, verificationToken]
   );
   return result.rows[0];
 }
