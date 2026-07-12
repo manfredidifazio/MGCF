@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { login } from "../../services/authService";
 import { useAuth } from "../../context/AuthContext";
@@ -7,6 +8,7 @@ import Input from "../ui/Input";
 
 export default function LoginForm({ onForgotPassword, onRegister }) {
   const { loginUser } = useAuth();
+  const navigate = useNavigate();
   const [fields, setFields] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
 
@@ -15,8 +17,12 @@ export default function LoginForm({ onForgotPassword, onRegister }) {
     setMessage("");
     try {
       const response = await login(fields.email, fields.password);
-      if (response.success) loginUser(response.token, response.user);
-      window.location.href = "/dashboard";
+      if (response.success) {
+        loginUser(response.token, response.user);
+        navigate("/dashboard", { replace: true });
+      } else {
+        setMessage(response.message ?? "Email o password non corretti.");
+      }
     } catch (error) {
       setMessage(error.response?.data?.message ?? "Errore durante il login.");
     }
