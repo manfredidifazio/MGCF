@@ -21,9 +21,9 @@ export default function MainLayout() {
         />
       )}
 
-      {/* MOBILE SIDEBAR DRAWER */}
+      {/* MOBILE SIDEBAR DRAWER - z-[9999] to stay above everything */}
       <div
-        className={`fixed left-0 top-0 h-screen w-64 transform transition-transform duration-300 md:hidden z-50 bg-white border-r border-gray-300 overflow-y-auto ${
+        className={`fixed left-0 top-0 h-screen w-64 transform transition-transform duration-300 md:hidden z-[9999] bg-white border-r border-gray-300 overflow-y-auto ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
