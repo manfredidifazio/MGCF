@@ -5,6 +5,7 @@ import {
   createUser,
   deleteOwnUser,
   findUserById,
+  requestPasswordReset,
   resetPassword,
   updateProfile,
   verifyUserEmail,
@@ -72,7 +73,17 @@ export async function me(req, res) {
 }
 
 export async function forgotPassword(req, res) {
-  return res.json({ success: false, message: "Recupero password via email disattivato. Contatta l'amministratore." });
+  try {
+    const email = clean(req.body.email).toLowerCase();
+    if (!validEmail(email)) {
+      return res.status(400).json({ success: false, message: "Email non valida." });
+    }
+    await requestPasswordReset(email);
+    return res.json({ success: true, message: "Se l'email è registrata, riceverai un link per recuperare la password." });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: "Errore durante il recupero password." });
+  }
 }
 
 export async function resetUserPassword(req, res) {
