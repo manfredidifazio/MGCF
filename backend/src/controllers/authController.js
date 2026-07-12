@@ -109,6 +109,10 @@ export async function editPassword(req, res) {
 }
 
 export async function removeOwnAccount(req, res) {
-  await deleteOwnUser(req.user.id);
-  return res.json({ success: true });
+  try {
+    await deleteOwnUser(req.user.id);
+    return res.json({ success: true });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
 }

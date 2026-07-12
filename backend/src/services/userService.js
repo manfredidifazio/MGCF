@@ -186,6 +186,11 @@ export async function changeUserPassword(userId, currentPassword, newPassword) {
 }
 
 export async function deleteOwnUser(userId) {
+  const masterEmail = process.env.ADMIN_EMAIL?.toLowerCase();
+  const user = await pool.query("SELECT email FROM users WHERE id = $1", [userId]);
+  if (user.rows[0] && masterEmail && String(user.rows[0].email || "").toLowerCase() === masterEmail) {
+    throw new Error("Il profilo Administrator master non può essere eliminato.");
+  }
   await pool.query(
     `
       UPDATE users
