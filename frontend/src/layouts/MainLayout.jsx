@@ -36,6 +36,8 @@ export default function MainLayout() {
 
       {/* CONTENUTO - margin only on desktop, padding-top on mobile for fixed topbar */}
       <main className="md:ml-64 pt-11 md:pt-0 min-w-0 p-2">
+        {/* Mobile spacer between topbar and content */}
+        <div className="md:hidden h-2" />
         <Outlet />
       </main>
     </div>

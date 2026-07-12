@@ -1,6 +1,6 @@
 export default function PageMask({ icon: Icon, title, description, actions, children }) {
   return (
-    <div className="mt-2 md:mt-0 overflow-hidden rounded-xl border border-gray-300 bg-white">
+    <div className="overflow-hidden rounded-xl border border-gray-300 bg-white">
       {(title || description || actions) && (
         <div className="bg-[#e4e4e4] px-4 py-3">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
