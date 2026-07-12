@@ -8,8 +8,8 @@ export default function MainLayout() {
 
   return (
     <div className="min-h-screen bg-[#f8f8f8]">
-      {/* SIDEBAR - hidden on mobile, fixed on desktop */}
-      <div className="hidden md:block">
+      {/* SIDEBAR - fixed on desktop, hidden on mobile */}
+      <div className="hidden md:fixed md:left-0 md:top-0 md:h-screen md:w-64 md:z-50">
         <Sidebar />
       </div>
 
@@ -30,10 +30,10 @@ export default function MainLayout() {
         <Sidebar />
       </div>
 
-      {/* TOPBAR */}
+      {/* TOPBAR - fixed top padding for desktop */}
       <Topbar sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
 
-      {/* CONTENUTO */}
+      {/* CONTENUTO - margin only on desktop */}
       <main className="md:ml-64 min-w-0 p-2">
         <Outlet />
       </main>
