@@ -10,7 +10,7 @@ export default function Topbar({ sidebarOpen = false, onSidebarToggle = () => {}
   const { isVisible, toggleVisibility } = useAmountVisibility();
 
   return (
-    <header className="fixed md:sticky top-0 left-0 right-0 md:ml-64 z-[9998] flex h-11 items-center gap-3 border-b border-indigo-400/30 bg-[#e4e4e4] px-5">
+    <header className="fixed md:sticky top-0 left-0 right-0 md:ml-64 z-[9998] flex h-11 items-center gap-3 border-b border-indigo-400/30 bg-[#e4e4e4] px-3 md:px-5 overflow-hidden">
       {/* Menu toggle button - only on mobile */}
       <button
         type="button"
@@ -25,8 +25,10 @@ export default function Topbar({ sidebarOpen = false, onSidebarToggle = () => {}
         )}
       </button>
 
-      <NavigationTrail className="-ml-2 flex-1" />
+      {/* Navigation trail - hidden on mobile */}
+      <NavigationTrail className="hidden md:flex -ml-2 flex-1" />
 
+      {/* Right side icons */}
       <div className="flex shrink-0 items-center gap-1">
         <button
           type="button"
@@ -49,8 +51,12 @@ export default function Topbar({ sidebarOpen = false, onSidebarToggle = () => {}
           <Bell className="h-[20px] w-[20px]" style={{ strokeWidth: 1 }} />
         </button>
 
-        <ReportsMenu />
-        <SettingsMenu />
+        {/* Hidden on mobile - only on desktop */}
+        <div className="hidden md:flex items-center gap-1">
+          <ReportsMenu />
+          <SettingsMenu />
+        </div>
+
         <UserMenu />
       </div>
     </header>
