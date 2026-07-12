@@ -55,9 +55,8 @@ export async function sendVerificationEmail(user) {
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; }
           .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
-          .header { background: linear-gradient(135deg, #b45309 0%, #d97706 100%); padding: 40px 30px; text-align: center; color: white; }
-          .header h1 { margin: 0; font-size: 28px; font-weight: 700; }
-          .header p { margin: 8px 0 0 0; font-size: 14px; opacity: 0.9; }
+          .logo-container { padding: 30px 30px 20px 30px; text-align: center; background: #ffffff; }
+          .logo-container img { max-width: 120px; height: auto; }
           .content { padding: 40px 30px; }
           .greeting { font-size: 16px; font-weight: 500; margin-bottom: 24px; color: #1f2937; }
           .message { font-size: 14px; line-height: 1.8; color: #4b5563; margin-bottom: 32px; }
@@ -66,15 +65,14 @@ export async function sendVerificationEmail(user) {
           .cta-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(180, 83, 9, 0.3); }
           .link-text { font-size: 12px; color: #6b7280; margin-top: 16px; word-break: break-all; }
           .link-text a { color: #b45309; text-decoration: none; }
-          .footer { background: #f9fafb; padding: 24px 30px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 12px; color: #6b7280; }
+          .footer { background: #f9fafb; padding: 24px 30px; text-align: center; font-size: 12px; color: #6b7280; }
           .footer p { margin: 4px 0; }
         </style>
       </head>
       <body>
         <div class="container">
-          <div class="header">
-            <h1>MGCF</h1>
-            <p>Modulo gestionale contabile fiscale</p>
+          <div class="logo-container">
+            <img src="https://mgcf.it/logo.png" alt="MGCF Logo" />
           </div>
           <div class="content">
             <p class="greeting">Benvenuto/a! 👋</p>
@@ -125,9 +123,8 @@ export async function sendPasswordResetEmail(user) {
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; }
           .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
-          .header { background: linear-gradient(135deg, #b45309 0%, #d97706 100%); padding: 40px 30px; text-align: center; color: white; }
-          .header h1 { margin: 0; font-size: 28px; font-weight: 700; }
-          .header p { margin: 8px 0 0 0; font-size: 14px; opacity: 0.9; }
+          .logo-container { padding: 30px 30px 20px 30px; text-align: center; background: #ffffff; }
+          .logo-container img { max-width: 120px; height: auto; }
           .content { padding: 40px 30px; }
           .alert { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 4px; margin-bottom: 24px; }
           .alert p { margin: 0; color: #92400e; font-size: 14px; font-weight: 500; }
@@ -138,15 +135,14 @@ export async function sendPasswordResetEmail(user) {
           .cta-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(180, 83, 9, 0.3); }
           .link-text { font-size: 12px; color: #6b7280; margin-top: 16px; word-break: break-all; }
           .link-text a { color: #b45309; text-decoration: none; }
-          .footer { background: #f9fafb; padding: 24px 30px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 12px; color: #6b7280; }
+          .footer { background: #f9fafb; padding: 24px 30px; text-align: center; font-size: 12px; color: #6b7280; }
           .footer p { margin: 4px 0; }
         </style>
       </head>
       <body>
         <div class="container">
-          <div class="header">
-            <h1>MGCF</h1>
-            <p>Modulo gestionale contabile fiscale</p>
+          <div class="logo-container">
+            <img src="https://mgcf.it/logo.png" alt="MGCF Logo" />
           </div>
           <div class="content">
             <div class="alert">
