@@ -72,7 +72,7 @@ export async function sendVerificationEmail(user) {
       <body>
         <div class="container">
           <div class="logo-container">
-            <img src="https://mgcf.it/logo.png" alt="MGCF Logo" />
+            <img src="https://mgcf.it/logo.png?v=2" alt="MGCF Logo" />
           </div>
           <div class="content">
             <p class="greeting">Benvenuto/a! 👋</p>
@@ -142,7 +142,7 @@ export async function sendPasswordResetEmail(user) {
       <body>
         <div class="container">
           <div class="logo-container">
-            <img src="https://mgcf.it/logo.png" alt="MGCF Logo" />
+            <img src="https://mgcf.it/logo.png?v=2" alt="MGCF Logo" />
           </div>
           <div class="content">
             <div class="alert">
