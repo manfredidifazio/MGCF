@@ -10,6 +10,11 @@
   --mgcf-sidebar-hover: #e2e8f0;
 }
 
+/* Disable pinch-to-zoom on all devices */
+html {
+  touch-action: manipulation;
+}
+
 html,
 body,
 #root {
