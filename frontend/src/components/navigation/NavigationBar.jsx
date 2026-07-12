@@ -39,7 +39,7 @@ const pages = [
   { label: "Inserisci accredito", path: "/accounting/accredits", keywords: "contabilita accredito entrata" },
   { label: "Gestisci estratti conto", path: "/accounting/statements", keywords: "contabilita inserisci modifica estratti conto saldi" },
   { label: "Visualizza saldi conto", path: "/accounting/balances", keywords: "contabilita saldi conto" },
-  { label: "Resoconto contabile", path: "/accounting/reports", keywords: "contabilita resoconto report" },
+  { label: "Resoconto contabile", path: "/accounting/resoconto-contabile", keywords: "contabilita resoconto report" },
   { label: "Resoconto fiscale", path: "/fiscal/reports", keywords: "fiscale tasse immobili veicoli resoconto report" },
 ];
 
@@ -66,7 +66,7 @@ const breadcrumbMap = {
   "/accounting/accredits": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Inserisci accredito", path: "/accounting/accredits" }],
   "/accounting/statements": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Gestisci estratti conto", path: "/accounting/statements" }],
   "/accounting/balances": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Visualizza saldi conto", path: "/accounting/balances" }],
-  "/accounting/reports": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Resoconto contabile", path: "/accounting/reports" }],
+  "/accounting/resoconto-contabile": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Resoconto contabile", path: "/accounting/resoconto-contabile" }],
   "/fiscal/reports": [{ label: "Dashboard", path: "/dashboard" }, { label: "Resoconto fiscale", path: "/fiscal/reports" }],
 };
 
@@ -170,6 +170,8 @@ export function NavigationTrail({ className = "" }) {
   let breadcrumbs = breadcrumbsFor(location.pathname, detailName);
   const isStatementPage = location.pathname.startsWith("/accounting/statements");
   const isAccreditPage = location.pathname === "/accounting/accredits";
+  const isReportPage = location.pathname === "/accounting/resoconto-contabile";
+  const reportView = searchParams.get("view");
   
   if (creditAccountId && isAccreditPage) {
     breadcrumbs = [
@@ -194,6 +196,13 @@ export function NavigationTrail({ className = "" }) {
       { label: "Home", path: "/dashboard" },
       { label: "Contabilità", path: "/accounting" },
       { label: "Inserisci accredito", path: "/accounting/accredits" },
+      { label: `Anno ${year}`, path: null },
+    ];
+  } else if (isReportPage && reportView === "year" && year) {
+    breadcrumbs = [
+      { label: "Home", path: "/dashboard" },
+      { label: "Contabilità", path: "/accounting" },
+      { label: "Resoconto contabile", path: "/accounting/resoconto-contabile?view=general" },
       { label: `Anno ${year}`, path: null },
     ];
   }

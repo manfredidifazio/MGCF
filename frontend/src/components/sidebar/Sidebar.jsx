@@ -280,6 +280,10 @@ export default function Sidebar() {
     return params.get("view") === "year";
   }, [location.pathname, location.search]);
 
+  const isReportPage = location.pathname.startsWith("/accounting/resoconto-contabile");
+  const isAnnualSectionHighlighted = isReportPage && (openTrees.reportsYear || isAnnualReportActive);
+  const isGeneralReportHighlighted = isReportPage && !isAnnualSectionHighlighted;
+
   function toggleTree(tree) {
     setOpenTrees((current) => {
       const nextOpen = !current[tree];
@@ -344,9 +348,15 @@ export default function Sidebar() {
           onToggle={() => toggleTree("reports")}
           isActive={location.pathname.startsWith("/accounting/resoconto-contabile")}
         >
-          <TreeLink to="/accounting/resoconto-contabile?view=general" className="block px-2 py-1.5 text-[10px] uppercase tracking-wide">
-            Resoconto generale
-          </TreeLink>
+          <Link
+            to="/accounting/resoconto-contabile?view=general"
+            onClick={() => setOpenTrees((current) => ({ ...current, reportsYear: false }))}
+            className="group block px-2 py-1.5 text-[10px] uppercase tracking-wide"
+          >
+            <span className={`transition-colors ${isGeneralReportHighlighted ? "font-semibold text-orange-400" : "text-slate-600 group-hover:font-semibold"}`}>
+              Resoconto generale
+            </span>
+          </Link>
           <div>
             <div className="flex min-h-8 items-center">
               <button
@@ -354,7 +364,7 @@ export default function Sidebar() {
                 onClick={() => setOpenTrees((current) => ({ ...current, reportsYear: !current.reportsYear }))}
                 className="group flex min-w-0 flex-1 items-center py-2 pl-2 text-left text-[10px] uppercase tracking-wide"
               >
-                <span className={`whitespace-nowrap leading-4 ${isAnnualReportActive ? "font-semibold text-orange-400" : "text-slate-600 group-hover:font-semibold"}`}>
+                <span className={`whitespace-nowrap leading-4 ${isAnnualSectionHighlighted ? "font-semibold text-orange-400" : "text-slate-600 group-hover:font-semibold"}`}>
                   Resoconto annuale
                 </span>
               </button>

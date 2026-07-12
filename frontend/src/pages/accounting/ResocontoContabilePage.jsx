@@ -3,7 +3,6 @@ import {
   Banknote,
   BarChart3,
   ClipboardList,
-  FolderKanban,
   TrendingUp,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -456,6 +455,14 @@ export default function ResocontoContabilePage() {
 
   const showYearTable = view === "year" && currentYear;
 
+  const pageTitle = showYearTable
+    ? `Resoconto annuale anno ${currentYear}`
+    : "Resoconto generale";
+
+  const pageDescription = showYearTable
+    ? `Dettaglio del ricavo per conto nell'anno ${currentYear}.`
+    : "Panoramica ricavi per conto con viste generale e annuale.";
+
   const activeRows = showYearTable ? monthRows : generalRows;
   const activeTotals = showYearTable ? monthTotals : generalTotals;
   const activeAverages = showYearTable ? monthAverages : generalAverages;
@@ -485,20 +492,12 @@ export default function ResocontoContabilePage() {
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <ClipboardList className="h-5 w-5 shrink-0 text-black" />
-              <h1 className="text-xl text-black">Resoconto contabile</h1>
+              <h1 className="text-xl text-black">{pageTitle}</h1>
             </div>
-            <p className="mt-1 text-sm text-black">Panoramica ricavi per conto con viste generale e annuale.</p>
+            <p className="mt-1 text-sm text-black">{pageDescription}</p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 lg:justify-end">
-            <Link
-              to="/accounting/resoconto-contabile?view=general"
-              className="mgcf-report-general-btn inline-flex h-9 items-center gap-2 rounded-md border border-orange-500 bg-orange-500 px-4 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
-            >
-              <FolderKanban className="h-4 w-4 text-white" />
-              Resoconto generale
-            </Link>
-          </div>
+          <div className="flex flex-wrap items-center gap-2 lg:justify-end" />
         </div>
       </div>
 
