@@ -65,6 +65,13 @@ body {
   font-weight: 600;
 }
 
+/* Eccezione: bottone arancione Resoconto generale mantiene testo bianco in hover/focus. */
+#root a.mgcf-report-general-btn:hover,
+#root a.mgcf-report-general-btn:focus-visible,
+#root a.mgcf-report-general-btn[aria-current="page"] {
+  color: #ffffff !important;
+}
+
 /* Sidebar: hover prioritario su sfondo scuro (specificita' > regola globale). */
 #root aside a:hover,
 #root aside button:hover {

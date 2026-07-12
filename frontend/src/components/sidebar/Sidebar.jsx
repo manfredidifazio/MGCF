@@ -20,7 +20,6 @@ import Logo from "../ui/Logo";
 
 const accountingItems = [
   { label: "Visualizza saldo conti", path: "/accounting/balances", icon: BarChart2 },
-  { label: "Resoconto contabile", path: "/accounting/resoconto-contabile", icon: ClipboardList },
 ];
 
 const dynamicSections = [
@@ -179,14 +178,14 @@ function AccountBranch({ account, years, type, open, onToggle, location }) {
 
 export default function Sidebar() {
   const location = useLocation();
-  const [openTrees, setOpenTrees] = useState({ accredits: false, statements: false, tax: false, property: false, vehicle: false });
+  const [openTrees, setOpenTrees] = useState({ accredits: false, statements: false, reports: false, reportsYear: false, tax: false, property: false, vehicle: false });
   const [openAccounts, setOpenAccounts] = useState({});
   const [items, setItems] = useState({ tax: [], property: [], vehicle: [] });
   const [accountingData, setAccountingData] = useState({ accounts: [], accredits: [], statements: [] });
 
   // Close all menus when location changes
   useEffect(() => {
-    setOpenTrees({ accredits: false, statements: false, tax: false, property: false, vehicle: false });
+    setOpenTrees({ accredits: false, statements: false, reports: false, reportsYear: false, tax: false, property: false, vehicle: false });
     setOpenAccounts({});
   }, [location.pathname]);
 
@@ -206,6 +205,14 @@ export default function Sidebar() {
         setOpenTrees((current) => ({ ...current, statements: true }));
         setOpenAccounts({ [`statements-${accountId}`]: true });
       }
+    } else if (location.pathname.startsWith("/accounting/resoconto-contabile")) {
+      const params = new URLSearchParams(location.search);
+      const view = params.get("view") ?? "general";
+      setOpenTrees((current) => ({
+        ...current,
+        reports: true,
+        reportsYear: view === "year",
+      }));
     } else if (location.pathname.startsWith("/taxes")) {
       setOpenTrees((current) => ({ ...current, tax: true }));
     } else if (location.pathname.startsWith("/properties")) {
@@ -261,6 +268,17 @@ export default function Sidebar() {
       accountingData.statements.map((item) => item.period),
     );
   }, [accountingData.accredits, accountingData.statements]);
+
+  const reportYears = useMemo(() => {
+    return [...new Set(accountingData.accredits.map((item) => String(item.movementDate).slice(0, 4)).filter(Boolean))]
+      .sort((first, second) => Number(first) - Number(second));
+  }, [accountingData.accredits]);
+
+  const isAnnualReportActive = useMemo(() => {
+    if (!location.pathname.startsWith("/accounting/resoconto-contabile")) return false;
+    const params = new URLSearchParams(location.search);
+    return params.get("view") === "year";
+  }, [location.pathname, location.search]);
 
   function toggleTree(tree) {
     setOpenTrees((current) => {
@@ -319,6 +337,51 @@ export default function Sidebar() {
             </div>
           );
         })}
+        <AccountingTreeGroup
+          label="Resoconto contabile"
+          icon={ClipboardList}
+          open={openTrees.reports}
+          onToggle={() => toggleTree("reports")}
+          isActive={location.pathname.startsWith("/accounting/resoconto-contabile")}
+        >
+          <TreeLink to="/accounting/resoconto-contabile?view=general" className="block px-2 py-1.5 text-[10px] uppercase tracking-wide">
+            Resoconto generale
+          </TreeLink>
+          <div>
+            <div className="flex min-h-8 items-center">
+              <button
+                type="button"
+                onClick={() => setOpenTrees((current) => ({ ...current, reportsYear: !current.reportsYear }))}
+                className="group flex min-w-0 flex-1 items-center py-2 pl-2 text-left text-[10px] uppercase tracking-wide"
+              >
+                <span className={`whitespace-nowrap leading-4 ${isAnnualReportActive ? "font-semibold text-orange-400" : "text-slate-600 group-hover:font-semibold"}`}>
+                  Resoconto annuale
+                </span>
+              </button>
+              <ToggleButton
+                open={openTrees.reportsYear}
+                onToggle={() => setOpenTrees((current) => ({ ...current, reportsYear: !current.reportsYear }))}
+                label="Resoconto annuale"
+                compact
+              />
+            </div>
+            {openTrees.reportsYear && (
+              <div className="pb-1 pl-5">
+                {reportYears.length > 0 ? reportYears.map((year) => (
+                  <TreeLink
+                    key={year}
+                    to={`/accounting/resoconto-contabile?view=year&year=${year}`}
+                    className="block px-2 py-1.5 text-[10px] uppercase tracking-wide"
+                  >
+                    Anno {year}
+                  </TreeLink>
+                )) : (
+                  <p className="px-2 py-2 text-[11px] text-slate-500">Nessun anno disponibile</p>
+                )}
+              </div>
+            )}
+          </div>
+        </AccountingTreeGroup>
       </MacroSection>
 
       <div className="my-3 border-t border-gray-300" />
