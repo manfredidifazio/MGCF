@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --mgcf-font-family: "Inter", system-ui, sans-serif;
+  --mgcf-text-color: #334155;
+  --mgcf-interactive-color: #0284c7;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: #f7f6f3;
+  font-family: var(--mgcf-font-family);
+  color: var(--mgcf-text-color);
+}
+
+#root,
+#root * {
+  font-family: var(--mgcf-font-family);
+}
+
+/* Comportamento interattivo coerente per link e voci menu. */
+#root a,
+#root [role="button"],
+#root [role="menuitem"] {
+  transition: color 150ms ease, font-weight 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+/* I bottoni mantengono il proprio stile cromatico, senza forzature sul testo. */
+#root button {
+  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+#root a:hover,
+#root [role="button"]:hover,
+#root [role="menuitem"]:hover,
+#root a:focus-visible,
+#root [role="button"]:focus-visible,
+#root [role="menuitem"]:focus-visible,
+#root a[aria-current="page"] {
+  color: var(--mgcf-interactive-color) !important;
+  font-weight: 600;
+}
+
+/* Uniforma i bottoni primari: da arancione a azzurro delicato con testo bianco. */
+#root button[class*="bg-amber-500"],
+#root a[class*="bg-amber-500"] {
+  background-color: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+#root button[class*="bg-amber-500"]:hover,
+#root button[class*="hover:bg-amber-600"]:hover,
+#root a[class*="bg-amber-500"]:hover,
+#root a[class*="hover:bg-amber-600"]:hover {
+  background-color: #0369a1 !important;
+  border-color: #0369a1 !important;
+  color: #ffffff !important;
+}
+
+/* Uniforma la resa di tutte le icone SVG UI in menu e pagine. */
+#root svg[class*="h-"][class*="w-"] {
+  color: currentColor;
+  stroke-width: 1.5;
+  shape-rendering: geometricPrecision;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Mantiene le frecce/toggle visivamente piu marcate. */
+#root svg[class*="stroke-[2.8]"] {
+  stroke-width: 2.0;
+}
+
+/* Sidebar: font tondeggiante e rendering ottimizzato. */
+#root aside {
+  font-family: 'Nunito', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+:root {
+  --mgcf-font:          'Nunito', system-ui, sans-serif;
+  --mgcf-primary:       #6366f1;
+  --mgcf-primary-dark:  #4f46e5;
+  --mgcf-interactive:   #6366f1;
+  --mgcf-bg:            #f1f5f9;
+  --mgcf-text:          #1e293b;
+  --mgcf-sidebar-hover: #e2e8f0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--mgcf-bg);
+  font-family: var(--mgcf-font);
+  color: var(--mgcf-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root,
+#root * {
+  font-family: var(--mgcf-font);
+}
+
+/* Comportamento interattivo coerente per link e voci menu. */
+#root a,
+#root [role="button"],
+#root [role="menuitem"] {
+  transition: color 150ms ease, font-weight 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+/* I bottoni mantengono il proprio stile cromatico, senza forzature sul testo. */
+#root button {
+  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+#root a:hover,
+#root [role="button"]:hover,
+#root [role="menuitem"]:hover,
+#root a:focus-visible,
+#root [role="button"]:focus-visible,
+#root [role="menuitem"]:focus-visible,
+#root a[aria-current="page"] {
+  color: var(--mgcf-interactive) !important;
+  font-weight: 600;
+}
+
+/* Sidebar: hover prioritario su sfondo scuro (specificita' > regola globale). */
+#root aside a:hover,
+#root aside button:hover {
+  color: var(--mgcf-sidebar-hover) !important;
+}
+
+/* Sidebar: link attivi in indigo chiaro (leggibile su fondo scuro). */
+#root aside a[aria-current="page"] {
+  color: #a5b4fc !important;
+}
+
+/* Bottoni primari: amber → indigo. */
+#root button[class*="bg-amber-500"],
+#root a[class*="bg-amber-500"] {
+  background-color: var(--mgcf-primary) !important;
+  border-color:     var(--mgcf-primary) !important;
+  color: #ffffff !important;
+}
+
+#root button[class*="bg-amber-500"]:hover,
+#root button[class*="hover:bg-amber-600"]:hover,
+#root a[class*="bg-amber-500"]:hover,
+#root a[class*="hover:bg-amber-600"]:hover {
+  background-color: var(--mgcf-primary-dark) !important;
+  border-color:     var(--mgcf-primary-dark) !important;
+  color: #ffffff !important;
+}
+
+/* Uniforma la resa di tutte le icone SVG UI in menu e pagine. */
+#root svg[class*="h-"][class*="w-"] {
+  color: currentColor;
+  stroke-width: 1.5;
+  shape-rendering: geometricPrecision;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Mantiene le frecce/toggle visivamente piu marcate. */
+#root svg[class*="stroke-[2.8]"] {
+  stroke-width: 2.0;
+}
+
+/* Sidebar: rendering ottimizzato (font globale Nunito gia' attivo). */
+#root aside {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@keyframes mgcfToastInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  12% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  82% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-14px);
+  }
+}
+
+.mgcf-toast {
+  position: fixed;
+  top: 68px;
+  left: 50%;
+  z-index: 12000;
+  max-width: min(92vw, 680px);
+  width: max-content;
+  margin: 0;
+  border: 1px solid #a7f3d0;
+  border-radius: 12px;
+  background: #ecfdf5;
+  color: #047857;
+  box-shadow: 0 12px 28px -18px rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  animation: mgcfToastInOut 2.4s ease forwards;
+}
+
+.mgcf-toast--error {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.mgcf-toast--success {
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+  color: #047857;
+}
+
+@media (max-width: 640px) {
+  .mgcf-toast {
+    top: 62px;
+    max-width: 94vw;
+  }
+}
