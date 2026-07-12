@@ -13,17 +13,17 @@ export default function MainLayout() {
         <Sidebar />
       </aside>
 
-      {/* MOBILE OVERLAY when sidebar is open */}
+      {/* MOBILE OVERLAY when sidebar is open - below topbar */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          className="fixed left-0 right-0 top-11 bottom-0 z-40 bg-black/50 md:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* MOBILE SIDEBAR DRAWER - z-[9999] to stay above everything */}
+      {/* MOBILE SIDEBAR DRAWER - z-[9999] to stay above everything, under topbar */}
       <div
-        className={`fixed left-0 top-0 h-screen w-64 transform transition-transform duration-300 md:hidden z-[9999] bg-white border-r border-gray-300 overflow-y-auto ${
+        className={`fixed left-0 top-11 h-[calc(100vh-44px)] w-64 transform transition-transform duration-300 md:hidden z-[9999] bg-white border-r border-gray-300 overflow-y-auto ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
