@@ -47,15 +47,7 @@ export default function Input({
         {isPasswordField && (
           <button
             type="button"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              setShowPassword(true);
-            }}
-            onMouseUp={(e) => {
-              e.preventDefault();
-              setShowPassword(false);
-            }}
-            onMouseLeave={() => setShowPassword(false)}
+            onClick={() => setShowPassword((v) => !v)}
             className={`absolute right-3 top-1/2 -translate-y-1/2 ${
               dark ? "text-white/40 hover:text-white/70" : "text-slate-400 hover:text-slate-600"
             }`}
