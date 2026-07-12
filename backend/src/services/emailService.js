@@ -74,7 +74,7 @@ export async function sendVerificationEmail(user) {
         <div class="container">
           <div class="header">
             <h1>MGCF</h1>
-            <p>Gestione Contabilità e Finanze</p>
+            <p>Modulo gestionale contabile fiscale</p>
           </div>
           <div class="content">
             <p class="greeting">Benvenuto/a! 👋</p>
@@ -97,7 +97,7 @@ export async function sendVerificationEmail(user) {
             </p>
           </div>
           <div class="footer">
-            <p><strong>MGCF - Gestione Contabilità e Finanze</strong></p>
+            <p><strong>MGCF - Modulo gestionale contabile fiscale</strong></p>
             <p>© 2026 Tutti i diritti riservati.</p>
             <p>Questa è una comunicazione automatica, non rispondere a questa email.</p>
           </div>
