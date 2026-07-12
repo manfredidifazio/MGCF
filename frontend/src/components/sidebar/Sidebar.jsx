@@ -284,7 +284,7 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 shrink-0 overflow-y-auto border-r border-gray-300 bg-white px-3 pb-5 z-50" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+    <aside className="w-64 h-screen shrink-0 overflow-y-auto border-r border-gray-300 bg-white px-3 pb-5" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {/* Hide scrollbar with CSS */}
       <style>{`
         aside::-webkit-scrollbar {
