@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-<<<<<<< HEAD
 :root {
   --mgcf-font:          'Nunito', system-ui, sans-serif;
   --mgcf-primary:       #6366f1;
@@ -9,19 +8,12 @@
   --mgcf-bg:            #f1f5f9;
   --mgcf-text:          #1e293b;
   --mgcf-sidebar-hover: #e2e8f0;
-=======
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
->>>>>>> be18514bd3ce3df5b6c06f1d6295b5405dc90d3d
 }
 
 html,
 body,
 #root {
   width: 100%;
-<<<<<<< HEAD
   min-height: 100%;
   margin: 0;
   padding: 0;
@@ -172,13 +164,3 @@ body {
     max-width: 94vw;
   }
 }
-=======
-  height: 100%;
-}
-
-body {
-  font-family: Inter, sans-serif;
-  background: #f3f6fb;
-  color: #1f2937;
-}
->>>>>>> be18514bd3ce3df5b6c06f1d6295b5405dc90d3d
