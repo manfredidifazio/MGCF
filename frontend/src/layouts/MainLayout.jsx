@@ -7,9 +7,9 @@ export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#f8f8f8]">
+    <div className="mgcf-app-shell min-h-screen bg-[#f8f8f8]">
       {/* SIDEBAR - fixed on desktop, hidden on mobile but visible as drawer */}
-      <aside className="fixed left-0 top-0 h-screen w-64 z-50 hidden md:block border-r border-gray-300 bg-white overflow-y-auto shrink-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <aside className="mgcf-app-sidebar fixed left-0 top-0 h-screen w-64 z-50 hidden md:block border-r border-gray-300 bg-white overflow-y-auto shrink-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <Sidebar />
       </aside>
 
@@ -32,10 +32,10 @@ export default function MainLayout() {
       </div>
 
       {/* TOPBAR - responsive margin */}
-      <Topbar sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
+      <Topbar className="mgcf-app-topbar" sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       {/* CONTENUTO - margin only on desktop, padding-top on mobile for fixed topbar */}
-      <main className="md:ml-64 pt-11 md:pt-0 min-w-0 p-2">
+      <main className="mgcf-app-main md:ml-64 pt-11 md:pt-0 min-w-0 p-2">
         {/* Mobile spacer between topbar and content */}
         <div className="md:hidden h-2" />
         {/* Desktop spacer between topbar and content */}

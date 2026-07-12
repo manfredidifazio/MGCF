@@ -39,6 +39,7 @@ const pages = [
   { label: "Inserisci accredito", path: "/accounting/accredits", keywords: "contabilita accredito entrata" },
   { label: "Gestisci estratti conto", path: "/accounting/statements", keywords: "contabilita inserisci modifica estratti conto saldi" },
   { label: "Visualizza saldi conto", path: "/accounting/balances", keywords: "contabilita saldi conto" },
+  { label: "Stampa resoconti", path: "/stampa-resoconti", keywords: "stampa resoconti pdf" },
   { label: "Resoconto contabile", path: "/accounting/resoconto-contabile", keywords: "contabilita resoconto report" },
   { label: "Resoconto fiscale", path: "/fiscal/reports", keywords: "fiscale tasse immobili veicoli resoconto report" },
 ];
@@ -66,6 +67,7 @@ const breadcrumbMap = {
   "/accounting/accredits": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Inserisci accredito", path: "/accounting/accredits" }],
   "/accounting/statements": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Gestisci estratti conto", path: "/accounting/statements" }],
   "/accounting/balances": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Visualizza saldi conto", path: "/accounting/balances" }],
+  "/stampa-resoconti": [{ label: "Dashboard", path: "/dashboard" }, { label: "Stampa resoconti", path: "/stampa-resoconti" }],
   "/accounting/resoconto-contabile": [{ label: "Dashboard", path: "/dashboard" }, { label: "Contabilità", path: "/accounting" }, { label: "Resoconto contabile", path: "/accounting/resoconto-contabile" }],
   "/fiscal/reports": [{ label: "Dashboard", path: "/dashboard" }, { label: "Resoconto fiscale", path: "/fiscal/reports" }],
 };

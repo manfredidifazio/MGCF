@@ -6,11 +6,11 @@ import SettingsMenu from "./SettingsMenu";
 import ReportsMenu from "./ReportsMenu";
 import UserMenu from "./UserMenu";
 
-export default function Topbar({ sidebarOpen = false, onSidebarToggle = () => {} }) {
+export default function Topbar({ sidebarOpen = false, onSidebarToggle = () => {}, className = "" }) {
   const { isVisible, toggleVisibility } = useAmountVisibility();
 
   return (
-    <header className="fixed md:sticky top-0 left-0 right-0 md:ml-64 z-[9998] flex h-11 items-center gap-3 border-b border-indigo-400/30 bg-[#e4e4e4] px-3 md:px-5 overflow-hidden">
+    <header className={`mgcf-app-topbar fixed md:sticky top-0 left-0 right-0 md:ml-64 z-[9998] flex h-11 items-center gap-3 border-b border-indigo-400/30 bg-[#e4e4e4] px-3 md:px-5 overflow-hidden ${className}`}>
       {/* Menu toggle button - only on mobile */}
       <button
         type="button"

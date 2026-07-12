@@ -9,6 +9,7 @@ import StatementsPage from "./pages/accounting/StatementsPage";
 import AccountStatementPage from "./pages/accounting/AccountStatementPage";
 import BalancesPage from "./pages/accounting/BalancesPage";
 import ResocontoContabilePage from "./pages/accounting/ResocontoContabilePage";
+import ResocontoContabilePrintPage from "./pages/accounting/ResocontoContabilePrintPage";
 import ManagedItemDetailPage from "./pages/catalog/ManagedItemDetailPage";
 import Dashboard from "./pages/dashboard/Dashboard";
 import LoginPage from "./pages/login/LoginPage";
@@ -28,17 +29,17 @@ export default function App() {
     <AmountVisibilityProvider>
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/verify-email" element={<VerifyEmailPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/verify-email" element={<VerifyEmailPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-        <Route
-          element={
-            <ProtectedRoute>
-              <MainLayout />
-            </ProtectedRoute>
-          }
-        >
+          <Route
+            element={
+              <ProtectedRoute>
+                <MainLayout />
+              </ProtectedRoute>
+            }
+          >
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/user-menu" element={<UserMenuPage />} />
           <Route path="/profile" element={<ProfilePage />} />
@@ -59,9 +60,11 @@ export default function App() {
           <Route path="/accounting/statements/:accountId" element={<AccountStatementPage />} />
           <Route path="/accounting/balances" element={<BalancesPage />} />
           <Route path="/accounting/resoconto-contabile" element={<ResocontoContabilePage />} />
+          <Route path="/accounting/resoconto-contabile/print" element={<ResocontoContabilePrintPage />} />
+          <Route path="/stampa-resoconti" element={<ResocontoContabilePrintPage />} />
           <Route path="/accounting/reports" element={<AccountingPage section="reports" title="Resoconto contabile" />} />
           <Route path="/fiscal/reports" element={<AccountingPage section="fiscalReports" title="Resoconto fiscale" />} />
-        </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </AmountVisibilityProvider>

@@ -16,11 +16,15 @@ export default function AccountingPage({ section, title }) {
   };
   const icon = iconMap[section] || BarChart;
 
+  const openContabilePdfPreview = () => {
+    window.open("/accounting/resoconto-contabile/print", "_blank", "noopener,noreferrer");
+  };
+
   if (section === "reports") {
     return (
       <PageMask icon={icon} title="Genera documenti di resoconto" description={descriptions[section]}>
         <div className="overflow-hidden rounded-xl border border-gray-300 bg-white">
-          <button className="flex w-full items-center gap-3 px-5 py-4 text-slate-700 transition-transform hover:-translate-y-0.5 hover:bg-slate-50">
+          <button type="button" onClick={openContabilePdfPreview} className="flex w-full items-center gap-3 px-5 py-4 text-slate-700 transition-transform hover:-translate-y-0.5 hover:bg-slate-50">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 text-white">
               <ClipboardList className="h-5 w-5" />
             </span>
